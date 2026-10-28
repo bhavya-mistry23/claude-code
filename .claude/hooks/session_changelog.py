@@ -64,8 +64,7 @@ def _get_ai_summary(diff_text, file_name):
             stdin=subprocess.DEVNULL,
             capture_output=True,
             text=True,
-            timeout=15,
-            shell=True
+            timeout=15
         )
 
         if result.returncode == 0 and result.stdout.strip():
@@ -102,20 +101,20 @@ def main():
     elif event == "PostToolUse":
         tool_name = data.get("tool_name")
         tool_input = data.get("tool_input", {})
-        
+
         file_path = ""
         if isinstance(tool_input, dict):
             file_path = tool_input.get("file_path", "")
 
         if tool_name in ("Edit", "Write") and file_path and file_path.endswith(BACKEND_EXTENSIONS):
             file_name = os.path.basename(file_path)
-            
+
             diff_text = _get_git_diff(file_path)
             if not diff_text and tool_name == "Write":
                 diff_text = tool_input.get("content", "")
-                
+
             summary = _get_ai_summary(diff_text, file_name)
-            
+
             row = f"| {timestamp} | `{tool_name}` | `{file_name}` | {summary} |\n"
             _append_log(row)
 
