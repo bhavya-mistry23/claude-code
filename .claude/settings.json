@@ -1,0 +1,20 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "powershell -ExecutionPolicy Bypass -NoProfile -File \"C:/Users/bhavya.mistry/Documents/ROUGHBOOK/claude-code/claude-code/.claude/statusline.ps1\"",
+    "refreshInterval": 2
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python ${CLAUDE_PROJECT_DIR}/.claude/hooks/session_changelog.py"
+          }
+        ]
+      }
+    ]
+  }
+}
