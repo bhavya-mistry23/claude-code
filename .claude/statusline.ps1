@@ -36,7 +36,7 @@ if ($pct -lt 50) {
 }
 
 # Removed the extra divider before $pct% here:
-$out = "$orange$model$reset $dim|$reset $barColor$bar$reset $pct%"
+$out = "$ESC[35m$model$reset $dim|$reset $barColor$bar$reset $pct%"
 
 if ($branch) {
     $out += " $dim|$reset $ESC[35m$branch$reset"

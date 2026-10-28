@@ -8,7 +8,7 @@ def add_two_digits(a, b):
 
 
 class Player:
-    """Represents a player in a multiplayer math game."""
+    """Player for addition game."""
 
     def __init__(self, name, number1, number2):
         """Initialize player with name and two numbers."""
@@ -49,11 +49,7 @@ def multiplayer_game(players):
 
 
 def main():
-    """
-    Add two numbers in single and multiplayer modes.
-
-    Runs both a single-player demo and a multiplayer game.
-    """
+    """Add two numbers with demo output."""
     print("Single Player Mode:")
     digit1 = 5
     digit2 = 3

@@ -46,7 +46,7 @@ def _get_git_diff(file_path):
     return ""
 
 def _get_ai_summary(diff_text, file_name):
-    """Passes the diff to the authenticated Claude CLI using safe standard input isolation."""
+    """Generate AI summary using Claude Haiku (hardcoded for cost efficiency)."""
     if not diff_text:
         return f"Modified {file_name}"
 
@@ -57,18 +57,22 @@ def _get_ai_summary(diff_text, file_name):
             f"Return ONLY the summary string with no quotes, markdown, or punctuation at the end:\n\n{diff_text[:2000]}"
         )
 
-        # We use stdin=subprocess.DEVNULL to prevent hook pipe blockages
+        # Always use Haiku 4.5 for cost efficiency (~$0.0001 per summary)
+        # Set via environment variable (hook always uses this, ignores /config model setting)
+        env = os.environ.copy()
+        env["CLAUDE_MODEL"] = "claude-haiku-4-5-20251001"
+
         result = subprocess.run(
             ["claude", "-p", prompt],
             input=None,
             stdin=subprocess.DEVNULL,
             capture_output=True,
             text=True,
-            timeout=15
+            timeout=15,
+            env=env
         )
 
         if result.returncode == 0 and result.stdout.strip():
-            # Grab the last clean output line from Claude's response
             lines = [l.strip() for l in result.stdout.strip().splitlines() if l.strip()]
             if lines:
                 return lines[-1]

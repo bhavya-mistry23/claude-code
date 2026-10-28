@@ -48,16 +48,12 @@ def multiplayer_game(players):
 
 
 def main():
-    """
-    Add two numbers in single and multiplayer modes.
-
-    Runs both a single-player demo and a multiplayer game.
-    """
+    """Demo: add two numbers."""
     print("Single Player Mode:")
     digit1 = 10
     digit2 = 3
     add_result = add_two_digits(digit1, digit2)
-    print(f"Addition of {digit1} and {digit2} is: {add_result}")
+    print(f"Result: {add_result}")
 
     # Multiplayer mode
     players = [
