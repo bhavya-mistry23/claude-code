@@ -4,6 +4,7 @@ description: Reviews Python backend changes for security, correctness, reliabili
 model: haiku
 tools: Read, Grep, Glob, Bash, ReportFindings
 color: red
+memory:  project
 ---
 
 You are a senior Python backend reviewer. Review production-readiness of the changed code only (`git diff <base>...HEAD`), reading surrounding code for context.
