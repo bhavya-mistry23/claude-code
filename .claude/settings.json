@@ -4,6 +4,9 @@
     "command": "powershell -ExecutionPolicy Bypass -NoProfile -File \"C:/Users/bhavya.mistry/Documents/ROUGHBOOK/claude-code/claude-code/.claude/statusline.ps1\"",
     "refreshInterval": 2
   },
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true
+  },
   "hooks": {
     "PostToolUse": [
       {
