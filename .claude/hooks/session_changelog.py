@@ -68,7 +68,7 @@ def _get_ai_summary(diff_text, file_name):
             stdin=subprocess.DEVNULL,
             capture_output=True,
             text=True,
-            timeout=15,
+            timeout=30,
             env=env
         )
 
@@ -113,9 +113,21 @@ def main():
         if tool_name in ("Edit", "Write") and file_path and file_path.endswith(BACKEND_EXTENSIONS):
             file_name = os.path.basename(file_path)
 
-            diff_text = _get_git_diff(file_path)
-            if not diff_text and tool_name == "Write":
-                diff_text = tool_input.get("content", "")
+            diff_text = ""
+            if tool_name == "Edit":
+                # Primary: extract the exact change from tool_input
+                old_str = tool_input.get("old_string") or tool_input.get("old_str") or ""
+                new_str = tool_input.get("new_string") or tool_input.get("new_str") or ""
+                if old_str or new_str:
+                    diff_text = f"--- Original\n+++ Replacement\n- {old_str}\n+ {new_str}"
+                else:
+                    diff_text = _get_git_diff(file_path)
+            elif tool_name == "Write":
+                diff_text = tool_input.get("content", "") or _get_git_diff(file_path)
+
+            # If still empty (e.g. tool_input had neither), attempt git diff
+            if not diff_text:
+                diff_text = _get_git_diff(file_path)
 
             summary = _get_ai_summary(diff_text, file_name)
 
