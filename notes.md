@@ -1,3 +1,11 @@
+skills.md for individual roles
+
+rules.md for setting boundariess and stufff like migrations
+
+command for server startup commands and testing commands we want agent to run
+
+
+
 -p for headless mode (not same as allowed edits, its hui less, permissions are needed)
 claude -p 'craete a dummy. py file' --dangerously-skip-permissions
 
