@@ -4,7 +4,9 @@ rules/ for setting boundariess and stufff like migrations
 
 commands/ for server startup commands and testing commands we want agent to run
 
-
+hooks/ 
+- pre tool use
+- post tool use
 
 -p for headless mode (not same as allowed edits, its hui less, permissions are needed)
 claude -p 'craete a dummy. py file' --dangerously-skip-permissions
