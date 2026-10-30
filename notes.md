@@ -8,8 +8,15 @@ hooks/
 - pre tool use
 - post tool use
 
+
+/mcps
+
 agents/
 isolated mutually exlucded tasks for saving up the context with memory so optimized for next run
+
+
+agent teams (BETA) they are interconnected
+
 
 -p for headless mode (not same as allowed edits, its hui less, permissions are needed)
 claude -p 'craete a dummy. py file' --dangerously-skip-permissions
