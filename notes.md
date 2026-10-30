@@ -1,8 +1,8 @@
-skills.md for individual roles
+skills/ for individual roles
 
-rules.md for setting boundariess and stufff like migrations
+rules/ for setting boundariess and stufff like migrations
 
-command for server startup commands and testing commands we want agent to run
+commands/ for server startup commands and testing commands we want agent to run
 
 
 
