@@ -1,57 +1,56 @@
-claude.md loaded everytime, keep it conscise and global. use /init for cluade.md generation via claude itself.
-(adds persistent context Claude sees every session)
+# Claude Code Features and Concepts
 
+## Core Configuration
 
-skills/ for individual roles
-(add reusable knowledge and invocable workflows)
+**claude.md** — Loaded every time. Keep it concise and global. Use `/init` for claude.md generation via Claude itself.
+(Adds persistent context Claude sees every session)
 
-rules/ for setting boundariess and stufff like migrations
+**skills/** — For individual roles.
+(Add reusable knowledge and invocable workflows)
 
-commands/ for server startup commands and testing commands we want agent to run
-(commands and skills are now similar)
+**rules/** — For setting boundaries (e.g., migrations)
 
-hooks/ 
-- pre tool use
-- post tool use
-- event based (when claude asks for prompt, session start, session end, file changed, permission request, )
-- exit codes; 0,1,2
+**commands/** — For server startup and testing commands the agent should run.
+(Commands and skills are now similar)
 
+**hooks/**
+- Pre tool use
+- Post tool use
+- Event-based (session start, session end, file changed, permission request)
+- Exit codes: 0, 1, 2
 
-/mcps
+## Advanced Features
 
-agents/
-isolated mutually exlucded tasks for saving up the context with memory so optimized for next run
+**/mcps** — Model Context Protocol Servers
 
+**agents/** — Isolated, mutually exclusive tasks that use memory for context optimization across runs.
 
-agent teams (BETA) they are interconnected
+**agent teams** (BETA) — Interconnected agents
 
-/loop for iteration, automatically
+**/loop** — For automatic iteration
 
+**Plugins & Marketplace** — Ship reusable configurations (.claude packages)
 
-plugins and market place to ship these (.claude stuff)
+## Headless Mode
 
+`-p` for headless mode (UI-less; permissions still required)
 
+```bash
+claude -p 'create a dummy.py file' --dangerously-skip-permissions
 
----------------------------------------------------------------------------------------------------
+claude -p "if dummy.py exists" >> claude-tasks.log 2>&1
+```
 
--p for headless mode (not same as allowed edits, its hui less, permissions are needed)
-claude -p 'craete a dummy. py file' --dangerously-skip-permissions
+## When to Use Each Feature
 
-
-claude -p "if dummy. py exists" >> claude-tasks. log 2>&1
-
----------------------------------------------------------------------------------------------------
-
-
-
-
-
-Claude gets a convention or command wrong twice - Add it to CLAUDE.md
-You keep asking Claude to be shorter, explain more, or answer in the same format - Set an output style
-You keep typing the same prompt to start a task - Save it as a user-invocable skill
-You paste the same playbook or multi-step procedure into chat for the third time - Capture it as a skill
-You keep copying data from a browser tab Claude can’t see - Connect that system as an MCP server
-Claude reads many files to find where a symbol is defined or used - Install a code intelligence plugin for your language
-A side task floods your conversation with output you won’t reference again - Route it through a subagent
-You want something to happen every time without asking - Write a hook
-A second repository needs the same setup - Package it as a plugin
+| Situation | Solution |
+|-----------|----------|
+| Claude gets a convention or command wrong twice | Add it to `CLAUDE.md` |
+| You keep asking Claude to be shorter/longer or use same format | Set an output style |
+| You keep typing the same prompt to start a task | Save it as a user-invocable skill |
+| You paste the same playbook or multi-step procedure three times | Capture it as a skill |
+| You keep copying data from a browser Claude can’t access | Connect that system as an MCP server |
+| Claude reads many files to find where a symbol is used | Install a code intelligence plugin for your language |
+| A side task floods chat with output you won’t reference | Route it through a subagent |
+| You want something to happen every time without asking | Write a hook |
+| A second repository needs the same setup | Package it as a plugin
