@@ -25,6 +25,14 @@ isolated mutually exlucded tasks for saving up the context with memory so optimi
 
 agent teams (BETA) they are interconnected
 
+/loop for iteration, automatically
+
+
+plugins and market place to ship these (.claude stuff)
+
+
+
+---------------------------------------------------------------------------------------------------
 
 -p for headless mode (not same as allowed edits, its hui less, permissions are needed)
 claude -p 'craete a dummy. py file' --dangerously-skip-permissions
@@ -32,10 +40,9 @@ claude -p 'craete a dummy. py file' --dangerously-skip-permissions
 
 claude -p "if dummy. py exists" >> claude-tasks. log 2>&1
 
-/loop for iteration, automatically
+---------------------------------------------------------------------------------------------------
 
 
-plugins and market place to ship these (.claude stuff)
 
 
 
